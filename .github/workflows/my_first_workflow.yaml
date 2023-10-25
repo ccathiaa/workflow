@@ -62,6 +62,6 @@ jobs:
 
       - name: Sign image
         run: |
-          cosign generate key-pair
-          cosign sign --key ./cosign.key -y ccathiia1/go-fortune:${{ github.sha }}
+          cosign generate-key-pair &&
+          cosign sign --key ./cosign.key -y ccathiia1/go-fortune:${{ github.sha }} &&
           cosign verify --key ./cosign.pub ccathiia1/go-fortune:${{ github.sha }}
