@@ -70,18 +70,23 @@ jobs:
       #     cosign sign --key ./cosign.key -y ccathiia1/go-fortune:${{ github.sha }}
 
       - name: Send custom JSON data to Slack workflow
-        id: slack
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          # This data can be any valid JSON from a previous step in the GitHub Action
-          payload: |
-            {
-              "type": "section",
-              "text": {
-                "type": "mrkdwn",
-                "text": "New Paid Time Off request from <example.com|Fred Enriquez>\n\n<https://example.com|View request>"
-              }
+  id: slack
+  uses: slackapi/slack-github-action@v1.24.0
+  with:
+    # For posting a rich message using Block Kit
+    payload: |
+      {
+        "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}",
+        "blocks": [
+          {
+            "type": "section",
+            "text": {
+              "type": "mrkdwn",
+              "text": "GitHub Action build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
             }
-
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEST_LINK }}
+          }
+        ]
+      }
+  env:
+    SLACK_WEBHOOK_URL: ${{ secrets.SLACK_TEST_LINK }}
+    SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
