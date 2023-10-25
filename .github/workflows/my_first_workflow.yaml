@@ -55,7 +55,7 @@ jobs:
         uses: MeilCli/slack-upload-file@v3
         with:
           slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-          channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
+          channel_id: ${{ secrets.SLACK_TEST_CHANNEL_ID }}
           file_path: 'trivy-report.txt'
           initial_comment: 'post by slack-upload-file'
 
