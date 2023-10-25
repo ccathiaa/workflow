@@ -54,7 +54,7 @@ jobs:
         if: failure()
         uses: MeilCli/slack-upload-file@v3
         with:
-          stack_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
           file_path: 'trivy-report.txt'
           initial_comment: 'post by slack-upload-file'
 
