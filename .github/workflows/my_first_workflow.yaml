@@ -56,9 +56,9 @@ jobs:
         with:
           scan-type: 'fs'
           ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL'
+          format: 'table'
+          output: 'trivy-report.txt'
+          severity: 'CRITICAL, HIGH'
      
       # - name: Upload Trivy table report
       #   uses: actions/upload-artifact@v2
