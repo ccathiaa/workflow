@@ -88,7 +88,7 @@ jobs:
           SLACK_CHANNEL: general
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
           SLACK_TITLE: "Image build and signed"
-          SLACK_MESSAGE: "**Name** - Wang Jiaqi\nMatriculation number - A0287268L\nEmail - e1285214@u.nus.edu\nRepository - https://github.com/${{ github.repository }}\nDocker Hub URL - https://hub.docker.com/repository/docker/ccathiia1/go-fortune/general"
+          SLACK_MESSAGE: "*Name* - Wang Jiaqi\nMatriculation number - A0287268L\nEmail - e1285214@u.nus.edu\nRepository - https://github.com/${{ github.repository }}\nDocker Hub URL - https://hub.docker.com/repository/docker/ccathiia1/go-fortune/general"
           SLACK_USERNAME: ccathiia
           SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_LINK }}
 
