@@ -55,4 +55,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: fred/go-fortune:${{ github.sha }}
+          tags: ccathiia1/go-fortune:${{ github.sha }}
