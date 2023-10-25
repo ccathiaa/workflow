@@ -48,24 +48,16 @@ jobs:
           SLACK_TITLE: "Scan failed - ccathiia"
           SLACK_MESSAGE: "Failed trivy scan, see uploaded report"
           SLACK_USERNAME: ccathiia
-          SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_LINK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_LINK }}
      
-      # - name: Upload Trivy table report
-      #   if: failure()
-      #   uses: MeilCli/slack-upload-file@v3
-      #   with:
-      #     slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-      #     channel_id: ${{ secrets.SLACK_TEST_CHANNEL_ID }}
-      #     file_path: 'trivy-report.txt'
-      #     initial_comment: 'post by slack-upload-file'
       - name: Upload to slack step
         if: failure()
         uses: adrey/slack-file-upload-action@master
         with:
           token: ${{ secrets.SLACK_BOT_TOKEN }}
-          channel: ${{ secrets.SLACK_TEST_CHANNEL_ID }}
+          channel: ${{ secrets.SLACK_CHANNEL_ID }}
           path: 'trivy-report.txt'
-          initial_comment: 'post by slack-upload-file'
+          initial_comment: 'Scan report by ccathiia'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -98,5 +90,5 @@ jobs:
           SLACK_TITLE: "Image build and signed"
           SLACK_MESSAGE: "*Name:* Wang Jiaqi\n*Matriculation number:* A0287268L\n*Email:* e1285214@u.nus.edu\n*Repository:* https://github.com/${{ github.repository }}\n*Docker Hub URL:* https://hub.docker.com/repository/docker/ccathiia1/go-fortune/general"
           SLACK_USERNAME: ccathiia
-          SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_LINK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_LINK }}
 
