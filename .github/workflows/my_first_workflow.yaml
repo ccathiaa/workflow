@@ -34,7 +34,8 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-report.txt'
-          severity: 'CRITICAL, HIGH'
+          exit-code: '1'
+          severity: 'CRITICAL'
      
       - name: Upload Trivy table report
         uses: actions/upload-artifact@v2
@@ -62,6 +63,6 @@ jobs:
 
       - name: Sign image
         run: |
-          cosign generate-key-pair &&
-          cosign sign --key ./cosign.key -y ccathiia1/go-fortune:${{ github.sha }} &&
-          cosign verify --key ./cosign.pub ccathiia1/go-fortune:${{ github.sha }}
+          echo "${{ secrets.COSIGN_KEY }}" > cosign.key
+          cosign sign --key ./cosign.key -y ccathiia1/go-fortune:${{ github.sha }}
+      
