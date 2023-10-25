@@ -50,13 +50,21 @@ jobs:
           SLACK_USERNAME: ccathiia
           SLACK_WEBHOOK: ${{ secrets.SLACK_TEST_LINK }}
      
-      - name: Upload Trivy table report
+      # - name: Upload Trivy table report
+      #   if: failure()
+      #   uses: MeilCli/slack-upload-file@v3
+      #   with:
+      #     slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
+      #     channel_id: ${{ secrets.SLACK_TEST_CHANNEL_ID }}
+      #     file_path: 'trivy-report.txt'
+      #     initial_comment: 'post by slack-upload-file'
+      - name: Upload to slack step
         if: failure()
-        uses: MeilCli/slack-upload-file@v3
+        uses: adrey/slack-file-upload-action@master
         with:
-          slack_token: ${{ secrets.SLACK_BOT_TOKEN }}
-          channel_id: ${{ secrets.SLACK_TEST_CHANNEL_ID }}
-          file_path: 'trivy-report.txt'
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          channel: ${{ secrets.SLACK_TEST_CHANNEL_ID }}
+          path: 'trivy-report.txt'
           initial_comment: 'post by slack-upload-file'
 
       - name: Set up Docker Buildx
