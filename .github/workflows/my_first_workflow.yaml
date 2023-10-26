@@ -92,4 +92,3 @@ jobs:
           SLACK_USERNAME: ccathiia
           SLACK_WEBHOOK: ${{ secrets.SLACK_LINK }}
 
-
